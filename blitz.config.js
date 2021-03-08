@@ -8,10 +8,6 @@ module.exports = {
   ],
 
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-
-
-    console.log('config', config)
-
     // Note: we provide webpack above so you should not `require` it
     // Perform customizations to webpack config
     // Important: return the modified config
@@ -19,6 +15,10 @@ module.exports = {
       ...config,
       resolve: {
         ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          events: require.resolve("events/"),
+        },
       },
     }
   },
